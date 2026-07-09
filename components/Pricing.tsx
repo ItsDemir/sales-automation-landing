@@ -1,10 +1,14 @@
 "use client";
 
 import { Reveal, RevealGroup, motion } from "./motion";
+import { STRIPE_PILOT_URL, PILOT_PRICE } from "@/lib/site";
 
 const PLANS = [
   {
     name: "Starter",
+    price: "$750",
+    period: "/mo",
+    priceNote: "billed monthly · cancel anytime",
     desc: "Test the model with your first campaign.",
     features: [
       "50–75 prospects",
@@ -16,6 +20,9 @@ const PLANS = [
   },
   {
     name: "Professional",
+    price: "$1,750",
+    period: "/mo",
+    priceNote: "billed monthly · cancel anytime",
     desc: "The sweet spot for consistent pipeline.",
     features: [
       "100–150 prospects",
@@ -28,6 +35,9 @@ const PLANS = [
   },
   {
     name: "Enterprise",
+    price: "Custom",
+    period: "",
+    priceNote: "from ~$3,500/mo",
     desc: "Large-scale, always-on outreach.",
     features: [
       "150+ prospects / month",
@@ -61,8 +71,9 @@ export default function Pricing() {
           Built to scale with your pipeline.
         </h2>
         <p className="mt-5 text-lg text-chalk-muted">
-          Custom packages based on campaign size and cadence. Every plan is
-          priced around what actually makes sense for your team.
+          Straightforward monthly plans that scale with campaign size and
+          cadence. Prices are starting points — book a demo and we&apos;ll size
+          it to your team.
         </p>
       </Reveal>
 
@@ -89,6 +100,16 @@ export default function Pricing() {
             </div>
             <p className="mt-3 text-sm text-chalk-muted">{plan.desc}</p>
 
+            <div className="mt-6 flex items-baseline gap-1">
+              <span className="font-display text-4xl font-semibold tracking-tightest text-chalk">
+                {plan.price}
+              </span>
+              {plan.period && (
+                <span className="text-sm text-chalk-muted">{plan.period}</span>
+              )}
+            </div>
+            <p className="mt-1 text-xs text-chalk-faint">{plan.priceNote}</p>
+
             <ul className="mt-8 space-y-3 border-t border-white/10 pt-8">
               {plan.features.map((f) => (
                 <li key={f} className="flex items-start gap-3 text-sm text-chalk">
@@ -113,12 +134,26 @@ export default function Pricing() {
       </RevealGroup>
 
       <Reveal className="mt-10" delay={0.1}>
-        <p className="text-sm text-chalk-faint">
-          All plans are custom-priced.{" "}
-          <span className="text-chalk">
-            Let&apos;s talk about what fits your team.
-          </span>
-        </p>
+        <div className="flex flex-col items-start gap-4 rounded-2xl border border-white/10 bg-ink-800 p-6 sm:flex-row sm:items-center sm:justify-between">
+          <p className="text-sm text-chalk-muted">
+            Not ready for a monthly plan?{" "}
+            <span className="text-chalk">
+              Start with a one-time {PILOT_PRICE} pilot
+            </span>{" "}
+            — a full campaign, no commitment.
+          </p>
+          <a
+            href={STRIPE_PILOT_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group inline-flex shrink-0 items-center justify-center gap-2 rounded-full border border-accent/50 px-5 py-3 text-sm font-medium text-accent transition-colors hover:bg-accent hover:text-ink-900"
+          >
+            Start a pilot — {PILOT_PRICE}
+            <span className="transition-transform duration-300 group-hover:translate-x-0.5">
+              →
+            </span>
+          </a>
+        </div>
       </Reveal>
     </section>
   );

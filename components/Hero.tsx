@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import DemoPanel from "./DemoPanel";
+import { STRIPE_PILOT_URL, PILOT_LABEL } from "@/lib/site";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
@@ -59,10 +60,15 @@ export default function Hero() {
                 </span>
               </a>
               <a
-                href="#how"
-                className="inline-flex items-center justify-center rounded-full border border-white/20 px-6 py-3.5 text-sm font-medium text-chalk transition-colors hover:border-white/40"
+                href={STRIPE_PILOT_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group inline-flex items-center justify-center gap-2 rounded-full border border-accent/50 px-6 py-3.5 text-sm font-medium text-accent transition-colors hover:bg-accent hover:text-ink-900"
               >
-                See how it works
+                {PILOT_LABEL}
+                <span className="transition-transform duration-300 group-hover:translate-x-0.5">
+                  →
+                </span>
               </a>
             </motion.div>
 

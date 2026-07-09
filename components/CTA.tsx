@@ -1,6 +1,7 @@
 "use client";
 
 import { Reveal } from "./motion";
+import { STRIPE_PILOT_URL, PILOT_LABEL } from "@/lib/site";
 
 export default function CTA() {
   return (
@@ -28,6 +29,17 @@ export default function CTA() {
               className="group inline-flex items-center justify-center gap-2 rounded-full bg-accent px-8 py-4 text-sm font-medium text-ink-900 transition-colors hover:bg-accent-soft"
             >
               Book a free demo
+              <span className="transition-transform duration-300 group-hover:translate-x-0.5">
+                →
+              </span>
+            </a>
+            <a
+              href={STRIPE_PILOT_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group inline-flex items-center justify-center gap-2 rounded-full border border-accent/50 px-8 py-4 text-sm font-medium text-accent transition-colors hover:bg-accent hover:text-ink-900"
+            >
+              {PILOT_LABEL}
               <span className="transition-transform duration-300 group-hover:translate-x-0.5">
                 →
               </span>

@@ -457,38 +457,10 @@ export default function Features() {
         </div>
       </Reveal>
 
-      {/* ── Testimonials ─────────────────────────────────────────
-           NOTE TO FOUNDER: Do NOT invent quotes. Replace the
-           placeholders below with real, attributable beta-user quotes
-           once collected (name, title, company — with permission).
-           Delete this block entirely if you can't source at least one
-           real quote; an empty testimonial slot beats a fake one.
-      ─────────────────────────────────────────────────────────── */}
-      <Reveal className="mt-24">
-        <h3 className="font-display text-2xl font-medium tracking-tightest text-chalk">
-          What early users say
-        </h3>
-        <div className="mt-6 grid gap-6 md:grid-cols-2">
-          {/* TODO(testimonial): replace with a real, approved beta quote. */}
-          {[0, 1].map((n) => (
-            <figure
-              key={n}
-              className="flex flex-col justify-between rounded-2xl border border-dashed border-white/15 bg-ink-900 p-7"
-            >
-              <blockquote className="text-lg leading-relaxed text-chalk-muted">
-                &ldquo;[ Add a real beta-user quote here once collected. ]&rdquo;
-              </blockquote>
-              <figcaption className="mt-6 text-sm text-chalk-faint">
-                [ Name ] · [ Title ], [ Company ]
-              </figcaption>
-            </figure>
-          ))}
-        </div>
-        <p className="mt-4 text-xs text-chalk-faint">
-          We&apos;d rather show nothing than a made-up quote. Real results from
-          early partners go here as we collect them.
-        </p>
-      </Reveal>
+      {/* Testimonials intentionally omitted until we have real,
+          attributable beta-user quotes. Do NOT add invented quotes —
+          re-add a testimonial block here only with permission-backed
+          names, titles, and companies. */}
 
       {/* ── Source citations ────────────────────────────────────── */}
       <Reveal className="mt-20 border-t border-white/10 pt-8">
