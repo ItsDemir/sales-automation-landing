@@ -83,3 +83,21 @@ export function Filter(props: SVGProps<SVGSVGElement>) {
     </svg>
   );
 }
+
+export function Shield(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg {...base} {...props}>
+      <path d="M12 3 4 6v6c0 4.4 3.1 7.9 8 9 4.9-1.1 8-4.6 8-9V6l-8-3Z" />
+      <path d="m9 12 2 2 4-4" />
+    </svg>
+  );
+}
+
+export function Clock(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg {...base} {...props}>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M12 7v5l3 2" />
+    </svg>
+  );
+}
