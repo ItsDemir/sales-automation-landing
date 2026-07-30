@@ -13,5 +13,5 @@ export const STRIPE_PILOT_URL =
 export const PILOT_PRICE = "$499";
 export const PILOT_LABEL = `Start a pilot — ${PILOT_PRICE}`;
 
-export const CALENDLY_URL = "https://calendly.com/";
+export const CALENDLY_URL = "https://calendly.com/demir-vrmomentum/30min";
 export const CONTACT_EMAIL = "support@vrmomentum.com";

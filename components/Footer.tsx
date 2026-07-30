@@ -1,3 +1,5 @@
+import { CALENDLY_URL, CONTACT_EMAIL } from "@/lib/site";
+
 const LINKS = [
   { href: "#how", label: "How it works" },
   { href: "#features", label: "Why Momentum" },
@@ -43,13 +45,13 @@ export default function Footer() {
               Contact
             </span>
             <a
-              href="mailto:support@vrmomentum.com"
+              href={`mailto:${CONTACT_EMAIL}`}
               className="text-sm text-chalk-muted transition-colors hover:text-chalk"
             >
-              support@vrmomentum.com
+              {CONTACT_EMAIL}
             </a>
             <a
-              href="https://calendly.com/"
+              href={CALENDLY_URL}
               target="_blank"
               rel="noopener noreferrer"
               className="text-sm text-chalk-muted transition-colors hover:text-chalk"

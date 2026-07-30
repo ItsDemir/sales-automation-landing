@@ -1,7 +1,7 @@
 "use client";
 
 import { Reveal } from "./motion";
-import { STRIPE_PILOT_URL, PILOT_LABEL } from "@/lib/site";
+import { STRIPE_PILOT_URL, PILOT_LABEL, CALENDLY_URL, CONTACT_EMAIL } from "@/lib/site";
 
 export default function CTA() {
   return (
@@ -15,7 +15,7 @@ export default function CTA() {
 
         <Reveal delay={0.1}>
           <p className="mx-auto mt-8 max-w-xl text-lg text-chalk-muted">
-            Book a 20-minute demo and we&apos;ll show you exactly how Momentum
+            Book a 30-minute demo and we&apos;ll show you exactly how Momentum
             builds pipeline for a team like yours.
           </p>
         </Reveal>
@@ -23,7 +23,7 @@ export default function CTA() {
         <Reveal delay={0.2}>
           <div className="mt-12 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <a
-              href="https://calendly.com/"
+              href={CALENDLY_URL}
               target="_blank"
               rel="noopener noreferrer"
               className="group inline-flex items-center justify-center gap-2 rounded-full bg-accent px-8 py-4 text-sm font-medium text-ink-900 transition-colors hover:bg-accent-soft"
@@ -45,7 +45,7 @@ export default function CTA() {
               </span>
             </a>
             <a
-              href="mailto:support@vrmomentum.com"
+              href={`mailto:${CONTACT_EMAIL}`}
               className="inline-flex items-center justify-center rounded-full border border-white/20 px-8 py-4 text-sm font-medium text-chalk transition-colors hover:border-white/40"
             >
               Email us instead
