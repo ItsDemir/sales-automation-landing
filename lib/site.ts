@@ -14,4 +14,4 @@ export const PILOT_PRICE = "$499";
 export const PILOT_LABEL = `Start a pilot — ${PILOT_PRICE}`;
 
 export const CALENDLY_URL = "https://calendly.com/";
-export const CONTACT_EMAIL = "dirikdusa@gmail.com";
+export const CONTACT_EMAIL = "support@vrmomentum.com";

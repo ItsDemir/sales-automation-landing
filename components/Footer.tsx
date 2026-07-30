@@ -43,10 +43,10 @@ export default function Footer() {
               Contact
             </span>
             <a
-              href="mailto:dirikdusa@gmail.com"
+              href="mailto:support@vrmomentum.com"
               className="text-sm text-chalk-muted transition-colors hover:text-chalk"
             >
-              dirikdusa@gmail.com
+              support@vrmomentum.com
             </a>
             <a
               href="https://calendly.com/"
