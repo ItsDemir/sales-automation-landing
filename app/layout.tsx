@@ -16,14 +16,14 @@ const display = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
-  title: "Momentum — Autonomous B2B Sales Outreach",
+  title: "Momentum | Engineering Hiring Pipeline for Healthcare AI",
   description:
-    "Momentum finds your prospects, drafts personalized outreach, and runs the campaign end-to-end — so your team spends its time closing, not chasing.",
+    "Fill your AI diagnostics team 3x faster than traditional recruiting. Momentum builds qualified engineering and product hiring pipeline from Series B-D AI diagnostics companies.",
   metadataBase: new URL("https://sales-automation-landing.vercel.app"),
   openGraph: {
-    title: "Momentum — Autonomous B2B Sales Outreach",
+    title: "Momentum | Engineering Hiring Pipeline for Healthcare AI",
     description:
-      "Find prospects, draft outreach, run the campaign. Your team focuses on closing.",
+      "Qualified engineering and product candidates from Series B-D AI diagnostics companies. $15 per qualified candidate.",
     type: "website",
   },
 };

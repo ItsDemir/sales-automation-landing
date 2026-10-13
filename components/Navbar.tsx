@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 
 const LINKS = [
+  { href: "#why-healthcare", label: "Why healthcare" },
   { href: "#how", label: "How it works" },
   { href: "#features", label: "Why Momentum" },
   { href: "#pricing", label: "Pricing" },

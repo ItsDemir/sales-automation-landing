@@ -1,11 +1,11 @@
 const PHRASES = [
-  "Prospect research",
-  "Personalized drafting",
+  "AI diagnostics company mapping",
+  "Engineering org charts",
+  "Hiring gap analysis",
+  "Recruiting pitches",
   "Multi-touch sequences",
-  "Deliverability",
-  "Reply handling",
-  "Weekly reporting",
-  "Qualified pipeline",
+  "Candidate tracking",
+  "Qualified candidate pipeline",
 ];
 
 export default function Marquee() {

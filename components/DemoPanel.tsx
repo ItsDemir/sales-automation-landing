@@ -3,19 +3,20 @@
 import { motion } from "framer-motion";
 import Counter from "./Counter";
 
+/* Roles and company types only: no invented people or real companies. */
 const ROWS = [
-  { name: "Priya Nair", role: "VP Sales · Northwind", status: "Replied" },
-  { name: "Marcus Feld", role: "Head of RevOps · Lumen", status: "Opened" },
-  { name: "Dana Cho", role: "CRO · Fieldwork", status: "Queued" },
+  { role: "Staff ML Engineer", org: "Series C radiology AI", status: "Interested" },
+  { role: "Head of Product", org: "Series B pathology AI", status: "Replied" },
+  { role: "Principal Engineer, HIPAA infra", org: "Series D diagnostics platform", status: "Queued" },
 ];
 
 const statusColor: Record<string, string> = {
-  Replied: "text-accent",
-  Opened: "text-chalk",
+  Interested: "text-accent",
+  Replied: "text-chalk",
   Queued: "text-chalk-faint",
 };
 
-/** The floating "live campaign" product mock in the hero. */
+/** The floating "live hiring pipeline" product mock in the hero. */
 export default function DemoPanel() {
   return (
     <motion.div
@@ -29,8 +30,8 @@ export default function DemoPanel() {
         <span className="h-2.5 w-2.5 rounded-full border border-white/15" />
         <span className="h-2.5 w-2.5 rounded-full border border-white/15" />
         <span className="h-2.5 w-2.5 rounded-full border border-white/15" />
-        <span className="ml-3 text-xs text-chalk-faint">
-          momentum / campaigns / q3-outbound
+        <span className="ml-3 min-w-0 truncate text-xs text-chalk-faint">
+          momentum / pipelines / ml-platform-hiring
         </span>
         <span className="ml-auto flex items-center gap-1.5 text-xs text-accent">
           <span className="relative flex h-1.5 w-1.5">
@@ -44,19 +45,16 @@ export default function DemoPanel() {
       <div className="rounded-xl border border-white/10 bg-ink-900 p-5 sm:p-6">
         {/* stat row */}
         <div className="grid grid-cols-3 gap-4 border-b border-white/10 pb-5">
-          <Stat label="Prospects" value={<Counter to={143} />} />
-          <Stat label="Emails ready" value={<Counter to={143} />} />
-          <Stat
-            label="Hours saved"
-            value={<><Counter to={40} />+</>}
-          />
+          <Stat label="Companies mapped" value={<Counter to={50} />} />
+          <Stat label="Pitches sent" value={<Counter to={20} />} />
+          <Stat label="Qualified" value={<Counter to={4} />} />
         </div>
 
-        {/* prospect feed */}
+        {/* candidate feed */}
         <div className="mt-5 space-y-2">
           {ROWS.map((row, i) => (
             <motion.div
-              key={row.name}
+              key={row.role}
               initial={{ opacity: 0, x: 16 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{
@@ -64,13 +62,13 @@ export default function DemoPanel() {
                 ease: [0.16, 1, 0.3, 1],
                 delay: 0.7 + i * 0.18,
               }}
-              className="flex items-center justify-between rounded-lg border border-white/5 bg-ink-800/60 px-4 py-3"
+              className="flex items-center justify-between gap-4 rounded-lg border border-white/5 bg-ink-800/60 px-4 py-3"
             >
               <div className="min-w-0">
                 <p className="truncate text-sm font-medium text-chalk">
-                  {row.name}
+                  {row.role}
                 </p>
-                <p className="truncate text-xs text-chalk-muted">{row.role}</p>
+                <p className="truncate text-xs text-chalk-muted">{row.org}</p>
               </div>
               <span
                 className={`shrink-0 text-xs font-medium ${statusColor[row.status]}`}

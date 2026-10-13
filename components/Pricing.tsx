@@ -1,52 +1,44 @@
 "use client";
 
 import { Reveal, RevealGroup, motion } from "./motion";
-import { STRIPE_PILOT_URL, PILOT_PRICE } from "@/lib/site";
 
+/* Starter and Enterprise are paused while we focus on healthcare tech.
+   Their last copy is in git history (commit 2e5c980). */
 const PLANS = [
   {
-    name: "Starter",
-    price: "$750",
+    name: "Data Feed Only",
+    price: "$299",
     period: "/mo",
-    priceNote: "billed monthly · cancel anytime",
-    desc: "Test the model with your first campaign.",
+    usage: "",
+    priceNote: "billed monthly, cancel anytime",
+    desc: "Just the research. Your team runs the outreach.",
     features: [
-      "50–75 prospects",
-      "Personalized emails",
-      "Campaign management & sending",
-      "Weekly reports",
+      "Company list: Series B-D AI diagnostics",
+      "Engineering and product org charts",
+      "Hiring gaps by team",
+      "Decision-makers",
+      "Verified emails",
     ],
+    excluded: "No outreach service",
     featured: false,
   },
   {
     name: "Professional",
-    price: "$1,750",
+    price: "$1,500",
     period: "/mo",
-    priceNote: "billed monthly · cancel anytime",
-    desc: "The sweet spot for consistent pipeline.",
+    usage: "+ $15 per qualified candidate pipeline contact",
+    priceNote: "billed monthly, cancel anytime",
+    desc: "Research, pitches, sending, and tracking. You interview and hire.",
     features: [
-      "100–150 prospects",
-      "Deep personalization",
-      "Multi-touch sequences",
-      "Bi-weekly reports",
-      "Strategy consultation",
+      "Everything in Data Feed Only",
+      "Recruiting pitches written for each engineer",
+      "Multi-touch sequences, sent and tracked",
+      "Qualified candidates added to your pipeline",
+      "Bi-weekly pipeline reports",
+      "Hiring strategy consultation",
     ],
+    excluded: "",
     featured: true,
-  },
-  {
-    name: "Enterprise",
-    price: "Custom",
-    period: "",
-    priceNote: "from ~$3,500/mo",
-    desc: "Large-scale, always-on outreach.",
-    features: [
-      "150+ prospects / month",
-      "Custom targeting",
-      "Ongoing campaigns",
-      "Weekly + custom reports",
-      "Dedicated support",
-    ],
-    featured: false,
   },
 ];
 
@@ -68,33 +60,33 @@ export default function Pricing() {
       <Reveal className="max-w-2xl">
         <p className="text-sm uppercase tracking-widest text-accent">Pricing</p>
         <h2 className="mt-4 font-display text-[clamp(2.25rem,5vw,4rem)] font-semibold leading-[1.02] tracking-tightest text-balance text-chalk">
-          Built to scale with your pipeline.
+          Only pay for results.
         </h2>
         <p className="mt-5 text-lg text-chalk-muted">
-          Straightforward monthly plans that scale with campaign size and
-          cadence. Prices are starting points — book a demo and we&apos;ll size
-          it to your team.
+          Each qualified candidate added to your pipeline costs $15. No
+          placement fees and no percentage of salary, so a senior hire costs
+          you the same as a junior one.
         </p>
       </Reveal>
 
-      <RevealGroup className="mt-16 grid gap-6 lg:grid-cols-3">
+      <RevealGroup className="mt-16 grid gap-6 lg:grid-cols-2">
         {PLANS.map((plan) => (
           <motion.div
             key={plan.name}
             variants={fadeItem}
-            className={`flex flex-col rounded-2xl border p-8 transition-colors ${
+            className={`flex flex-col rounded-2xl border p-8 transition-colors lg:p-10 ${
               plan.featured
                 ? "border-accent/60 bg-ink-800"
                 : "border-white/10 bg-ink-900 hover:border-white/25"
             }`}
           >
-            <div className="flex items-center justify-between">
+            <div className="flex items-center justify-between gap-4">
               <h3 className="font-display text-xl font-medium text-chalk">
                 {plan.name}
               </h3>
               {plan.featured && (
                 <span className="rounded-full border border-accent px-3 py-1 text-xs text-accent">
-                  Most popular
+                  Full service
                 </span>
               )}
             </div>
@@ -104,24 +96,33 @@ export default function Pricing() {
               <span className="font-display text-4xl font-semibold tracking-tightest text-chalk">
                 {plan.price}
               </span>
-              {plan.period && (
-                <span className="text-sm text-chalk-muted">{plan.period}</span>
-              )}
+              <span className="text-sm text-chalk-muted">{plan.period}</span>
             </div>
+            {plan.usage && (
+              <p className="mt-2 font-display text-lg font-medium text-accent">
+                {plan.usage}
+              </p>
+            )}
             <p className="mt-1 text-xs text-chalk-faint">{plan.priceNote}</p>
 
-            <ul className="mt-8 space-y-3 border-t border-white/10 pt-8">
+            <ul className="mt-8 flex-1 space-y-3 border-t border-white/10 pt-8">
               {plan.features.map((f) => (
                 <li key={f} className="flex items-start gap-3 text-sm text-chalk">
                   <span className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-accent" />
                   {f}
                 </li>
               ))}
+              {plan.excluded && (
+                <li className="flex items-start gap-3 text-sm text-chalk-faint">
+                  <span className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-chalk-faint" />
+                  {plan.excluded}
+                </li>
+              )}
             </ul>
 
             <a
               href="#contact"
-              className={`mt-8 inline-flex items-center justify-center rounded-full px-5 py-3 text-sm font-medium transition-colors ${
+              className={`mt-10 inline-flex items-center justify-center rounded-full px-5 py-3 text-sm font-medium transition-colors ${
                 plan.featured
                   ? "bg-accent text-ink-900 hover:bg-accent-soft"
                   : "border border-white/20 text-chalk hover:border-white/40"
@@ -134,25 +135,15 @@ export default function Pricing() {
       </RevealGroup>
 
       <Reveal className="mt-10" delay={0.1}>
-        <div className="flex flex-col items-start gap-4 rounded-2xl border border-white/10 bg-ink-800 p-6 sm:flex-row sm:items-center sm:justify-between">
-          <p className="text-sm text-chalk-muted">
-            Not ready for a monthly plan?{" "}
-            <span className="text-chalk">
-              Start with a one-time {PILOT_PRICE} pilot
-            </span>{" "}
-            — a full campaign, no commitment.
+        <div className="rounded-2xl border border-white/10 bg-ink-800 p-6 lg:p-8">
+          <p className="font-display text-xl font-medium text-chalk">
+            What counts as qualified?
           </p>
-          <a
-            href={STRIPE_PILOT_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group inline-flex shrink-0 items-center justify-center gap-2 rounded-full border border-accent/50 px-5 py-3 text-sm font-medium text-accent transition-colors hover:bg-accent hover:text-ink-900"
-          >
-            Start a pilot — {PILOT_PRICE}
-            <span className="transition-transform duration-300 group-hover:translate-x-0.5">
-              →
-            </span>
-          </a>
+          <p className="mt-3 max-w-3xl text-sm leading-relaxed text-chalk-muted">
+            You set the bar when we scope your roles together: experience,
+            domain, seniority, and location. Candidates who don&apos;t meet it
+            never reach your invoice.
+          </p>
         </div>
       </Reveal>
     </section>

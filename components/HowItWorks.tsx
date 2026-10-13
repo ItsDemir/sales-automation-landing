@@ -7,26 +7,26 @@ const STEPS = [
   {
     n: "01",
     Icon: Target,
-    title: "Find your prospects",
-    body: "We pinpoint the exact decision-makers at the companies you want to reach. No scraped lists, no guessing — real people in your vertical.",
+    title: "Map all AI diagnostics companies and their engineering org gaps",
+    body: "We map every Series B-D AI diagnostics company: who runs each engineering and product team, which roles sit open, and where teams are stretched thin. You see exactly where the talent is.",
   },
   {
     n: "02",
     Icon: Pen,
-    title: "Personalized outreach",
-    body: "Every email speaks to the prospect's role and company. It reads like a human wrote it, because the message is built for one reader.",
+    title: "Write recruiting pitches that speak to engineers at these companies",
+    body: "Each pitch is written for one engineer. It names their team, their stack, and the problem your role solves, in language that lands with people who build regulated clinical AI.",
   },
   {
     n: "03",
     Icon: Send,
     title: "We send & track",
-    body: "We run the full sequence and monitor opens, clicks, and replies — then hand you the warm leads ready for a conversation.",
+    body: "We run the full sequence from authenticated, warmed-up domains and monitor opens, clicks, and replies. Then we hand you the candidates who want to talk.",
   },
   {
     n: "04",
     Icon: Handshake,
-    title: "You focus on closing",
-    body: "Your team gets back to what it does best: talking to interested buyers and closing deals. The admin work simply disappears.",
+    title: "You focus on closing engineering hires",
+    body: "Your team spends its time on interviews and offers. Sourcing, outreach, and follow-up are already done.",
   },
 ];
 
@@ -47,7 +47,7 @@ export default function HowItWorks() {
           How it works
         </p>
         <h2 className="mt-4 font-display text-[clamp(2.25rem,5vw,4rem)] font-semibold leading-[1.02] tracking-tightest text-balance text-chalk">
-          Four steps from cold list to warm reply.
+          Four steps from org chart to signed offer.
         </h2>
       </Reveal>
 
@@ -62,7 +62,7 @@ export default function HowItWorks() {
               <Icon className="h-7 w-7 text-chalk transition-colors group-hover:text-accent" />
               <span className="font-display text-sm text-chalk-faint">{n}</span>
             </div>
-            <h3 className="mt-8 font-display text-2xl font-medium text-chalk">
+            <h3 className="mt-8 font-display text-2xl font-medium leading-snug text-chalk">
               {title}
             </h3>
             <p className="mt-3 text-[15px] leading-relaxed text-chalk-muted">

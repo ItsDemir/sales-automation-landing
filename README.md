@@ -1,7 +1,8 @@
 # Momentum — Landing Site
 
-A modern, futuristic marketing site for **Momentum**, an autonomous B2B sales
-outreach service. Migrated from a vanilla HTML/CSS page to a Next.js app with a
+A modern, futuristic marketing site for **Momentum**, an engineering and product
+hiring pipeline service for healthcare tech, focused on Series B-D AI
+diagnostics companies. Migrated from a vanilla HTML/CSS page to a Next.js app with a
 dark, editorial, motion-driven design inspired by Midjourney, Runway, and Cosmos.
 
 ## Stack
@@ -15,12 +16,15 @@ Fully static (`○ (Static)` prerender), ~134 kB first-load JS.
 
 ## Sections
 
-- **Hero** — oversized headline + live "campaign" demo panel with animated counters
-- **Marquee** — capability ticker
-- **How it works** — four steps with outline icons
-- **Why Momentum** — alternating feature rows with flat animated visuals
-- **Pricing** — Starter / Professional / Enterprise
-- **CTA** — closing demo prompt
+- **Hero**: headline + live "hiring pipeline" demo panel with animated counters
+- **Marquee**: capability ticker
+- **Why healthcare tech**: why we focus on this vertical
+- **How it works**: four steps with outline icons
+- **Why Momentum**: healthcare hiring stats, 200 vs 20 outreach chart, comparison table
+- **Testimonials**: drafts only; hidden in production until `approved: true`
+  (see `components/Testimonials.tsx`)
+- **Pricing**: Data Feed Only / Professional
+- **CTA**: demo booking + free AI Diagnostics Companies List lead magnet
 - **Footer**
 
 ## Develop
@@ -48,5 +52,6 @@ auto-detects Next.js; no configuration required.
 - The original vanilla site is preserved under [`legacy/`](./legacy).
 - Design tokens (colors, fonts, spacing) live in
   [`tailwind.config.ts`](./tailwind.config.ts).
-- Update the demo CTA link (`https://calendly.com/`) and contact email in
-  `components/CTA.tsx`, `components/Footer.tsx`, and `components/Navbar.tsx`.
+- Demo link, contact email, and the lead magnet URL live in
+  [`lib/site.ts`](./lib/site.ts). The lead magnet opens a prefilled email until
+  you swap in a signup form or hosted file.

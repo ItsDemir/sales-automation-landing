@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import DemoPanel from "./DemoPanel";
-import { STRIPE_PILOT_URL, PILOT_LABEL } from "@/lib/site";
+import { LEAD_MAGNET_URL, LEAD_MAGNET_EXTERNAL } from "@/lib/site";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
@@ -19,6 +19,7 @@ export default function Hero() {
         <div className="grid items-center gap-16 lg:grid-cols-[1.05fr_0.95fr] lg:gap-12">
           {/* copy */}
           <motion.div
+            className="min-w-0"
             initial="hidden"
             animate="show"
             variants={{ show: { transition: { staggerChildren: 0.12 } } }}
@@ -26,24 +27,26 @@ export default function Hero() {
             <motion.div variants={item}>
               <span className="inline-flex items-center gap-2 rounded-full border border-white/10 px-3 py-1 text-xs text-chalk-muted">
                 <span className="h-1.5 w-1.5 rounded-full bg-accent" />
-                Autonomous outbound, done for you
+                Engineering recruiting for healthcare AI
               </span>
             </motion.div>
 
             <motion.h1
               variants={item}
-              className="mt-7 font-display text-[clamp(3rem,8.5vw,7.5rem)] font-semibold leading-[0.95] tracking-tightest text-balance text-chalk"
+              className="mt-7 font-display text-[clamp(2.75rem,6vw,5.25rem)] font-semibold leading-[0.98] tracking-tightest text-balance text-chalk"
             >
-              Stop losing deals to slow outreach.
+              Fill your AI diagnostics team 3x faster than traditional
+              recruiting.
             </motion.h1>
 
             <motion.p
               variants={item}
               className="mt-8 max-w-xl text-lg leading-relaxed text-chalk-muted sm:text-xl"
             >
-              Momentum finds your prospects, drafts outreach that reads like you
-              wrote it, and runs the whole campaign — so your team spends its
-              hours closing, not chasing.
+              We build your engineering and product hiring pipeline from
+              Series B-D AI diagnostics companies. You get candidates who
+              already ship clinical AI under HIPAA and FDA rules, not
+              generalists you have to train.
             </motion.p>
 
             <motion.div
@@ -60,14 +63,16 @@ export default function Hero() {
                 </span>
               </a>
               <a
-                href={STRIPE_PILOT_URL}
-                target="_blank"
-                rel="noopener noreferrer"
+                href={LEAD_MAGNET_URL}
+                {...(LEAD_MAGNET_EXTERNAL && {
+                  target: "_blank",
+                  rel: "noopener noreferrer",
+                })}
                 className="group inline-flex items-center justify-center gap-2 rounded-full border border-accent/50 px-6 py-3.5 text-sm font-medium text-accent transition-colors hover:bg-accent hover:text-ink-900"
               >
-                {PILOT_LABEL}
-                <span className="transition-transform duration-300 group-hover:translate-x-0.5">
-                  →
+                Get the free companies list
+                <span className="transition-transform duration-300 group-hover:translate-y-0.5">
+                  ↓
                 </span>
               </a>
             </motion.div>
@@ -76,12 +81,13 @@ export default function Hero() {
               variants={item}
               className="mt-8 text-sm text-chalk-faint"
             >
-              No new tools to learn. We run it end-to-end and report back weekly.
+              Plans from $299/mo. Each qualified candidate costs $15. No
+              placement fees, no cut of first-year salary.
             </motion.p>
           </motion.div>
 
           {/* demo */}
-          <div className="relative">
+          <div className="relative min-w-0">
             <DemoPanel />
           </div>
         </div>

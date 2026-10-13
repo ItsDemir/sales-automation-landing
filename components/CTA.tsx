@@ -1,7 +1,14 @@
 "use client";
 
 import { Reveal } from "./motion";
-import { STRIPE_PILOT_URL, PILOT_LABEL, CALENDLY_URL, CONTACT_EMAIL } from "@/lib/site";
+import {
+  CALENDLY_URL,
+  CONTACT_EMAIL,
+  LEAD_MAGNET_URL,
+  LEAD_MAGNET_EXTERNAL,
+  LEAD_MAGNET_LABEL,
+  LEAD_MAGNET_COUNT,
+} from "@/lib/site";
 
 export default function CTA() {
   return (
@@ -9,14 +16,15 @@ export default function CTA() {
       <div className="mx-auto max-w-wide px-6 py-32 text-center lg:px-10 lg:py-44">
         <Reveal>
           <h2 className="mx-auto max-w-4xl font-display text-[clamp(2.5rem,7vw,6rem)] font-semibold leading-[0.98] tracking-tightest text-balance text-chalk">
-            Ready to stop wasting time on outreach?
+            Ready to fill your engineering roles?
           </h2>
         </Reveal>
 
         <Reveal delay={0.1}>
           <p className="mx-auto mt-8 max-w-xl text-lg text-chalk-muted">
-            Book a 30-minute demo and we&apos;ll show you exactly how Momentum
-            builds pipeline for a team like yours.
+            Book a 30-minute demo. We&apos;ll show you the AI diagnostics
+            companies we&apos;ve mapped and the engineers we&apos;d pitch for
+            your open roles.
           </p>
         </Reveal>
 
@@ -34,23 +42,34 @@ export default function CTA() {
               </span>
             </a>
             <a
-              href={STRIPE_PILOT_URL}
-              target="_blank"
-              rel="noopener noreferrer"
+              href={LEAD_MAGNET_URL}
+              {...(LEAD_MAGNET_EXTERNAL && {
+                target: "_blank",
+                rel: "noopener noreferrer",
+              })}
               className="group inline-flex items-center justify-center gap-2 rounded-full border border-accent/50 px-8 py-4 text-sm font-medium text-accent transition-colors hover:bg-accent hover:text-ink-900"
             >
-              {PILOT_LABEL}
-              <span className="transition-transform duration-300 group-hover:translate-x-0.5">
-                →
+              {LEAD_MAGNET_LABEL}
+              <span className="transition-transform duration-300 group-hover:translate-y-0.5">
+                ↓
               </span>
             </a>
+          </div>
+        </Reveal>
+
+        <Reveal delay={0.3}>
+          <p className="mx-auto mt-8 max-w-xl text-sm leading-relaxed text-chalk-faint">
+            Not ready for a call? The free list covers {LEAD_MAGNET_COUNT}{" "}
+            Series B-D AI diagnostics companies we&apos;ve already mapped.
+            Questions?{" "}
             <a
               href={`mailto:${CONTACT_EMAIL}`}
-              className="inline-flex items-center justify-center rounded-full border border-white/20 px-8 py-4 text-sm font-medium text-chalk transition-colors hover:border-white/40"
+              className="text-chalk-muted underline decoration-white/20 underline-offset-2 transition-colors hover:text-chalk"
             >
-              Email us instead
+              Email us
             </a>
-          </div>
+            .
+          </p>
         </Reveal>
       </div>
     </section>

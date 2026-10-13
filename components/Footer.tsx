@@ -1,6 +1,12 @@
-import { CALENDLY_URL, CONTACT_EMAIL } from "@/lib/site";
+import {
+  CALENDLY_URL,
+  CONTACT_EMAIL,
+  LEAD_MAGNET_URL,
+  LEAD_MAGNET_EXTERNAL,
+} from "@/lib/site";
 
 const LINKS = [
+  { href: "#why-healthcare", label: "Why healthcare tech" },
   { href: "#how", label: "How it works" },
   { href: "#features", label: "Why Momentum" },
   { href: "#pricing", label: "Pricing" },
@@ -20,8 +26,9 @@ export default function Footer() {
               Momentum<span className="text-accent">.</span>
             </a>
             <p className="mt-4 text-sm leading-relaxed text-chalk-muted">
-              Autonomous B2B outreach. We find the prospects, write the emails,
-              and run the campaign — your team just closes.
+              Engineering and product hiring pipeline for healthcare tech. We
+              map AI diagnostics companies, pitch the engineers you want, and
+              hand you the ones ready to talk.
             </p>
           </div>
 
@@ -58,12 +65,22 @@ export default function Footer() {
             >
               Book a demo →
             </a>
+            <a
+              href={LEAD_MAGNET_URL}
+              {...(LEAD_MAGNET_EXTERNAL && {
+                target: "_blank",
+                rel: "noopener noreferrer",
+              })}
+              className="text-sm text-accent transition-colors hover:text-accent-soft"
+            >
+              Free AI diagnostics companies list ↓
+            </a>
           </div>
         </div>
 
         <div className="mt-16 flex flex-col justify-between gap-4 border-t border-white/10 pt-8 text-xs text-chalk-faint sm:flex-row">
           <p>© {new Date().getFullYear()} Momentum. All rights reserved.</p>
-          <p>Built for teams who&apos;d rather be closing.</p>
+          <p>Built for healthcare tech teams who&apos;d rather be interviewing.</p>
         </div>
       </div>
     </footer>
