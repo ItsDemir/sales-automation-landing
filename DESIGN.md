@@ -141,9 +141,13 @@ happening.
   solid grid. Ticks on 1, 2, or 5 times a power of ten.
 - **Interaction:** hover or focus a bar for its share of the total. A "Show as
   table" toggle gives the same data without the chart.
-- **Honesty:** every research chart shows a caption. While
-  `RESEARCH_VERIFIED` is false in `lib/research.ts` it reads "Illustrative
-  figures." Set it to true only once the numbers come from the real map.
+- **Citations:** every external figure lives in `lib/market-data.ts` with a
+  numbered source, and the page shows a footnote marker linked to a source
+  list. One dataset per chart: never mix FDA list snapshots from different
+  dates. Derived numbers must be exact arithmetic on published figures.
+- **Own claims:** company profiles and map totals live in
+  `lib/research.ts`. Profiles are captioned as examples until
+  `RESEARCH_VERIFIED` is true.
 
 ---
 

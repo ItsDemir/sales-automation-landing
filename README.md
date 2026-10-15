@@ -18,7 +18,7 @@ Fully static (`○ (Static)` prerender), ~134 kB first-load JS.
 - **Hero**: teal, with an animated DNA helix that unfolds into an org chart
 - **Why healthcare tech**: green stat cards (50 companies, 200+ open roles)
 - **Company mapping**: redacted company profiles with org trees and hiring gaps
-- **Hiring gap**: open roles by function bar chart
+- **Hiring gap**: FDA AI device authorizations per year, with cited sources
 - **How it works**: map, pitch, send, hire
 - **Pipeline**: example hiring dashboard with filters and reply status
 - **Compliance**: HIPAA-aware research callout
@@ -29,9 +29,9 @@ Fully static (`○ (Static)` prerender), ~134 kB first-load JS.
 - **Footer**
 
 Design tokens, contrast rules, components, and voice are documented in
-[`DESIGN.md`](./DESIGN.md). Research figures shown on the page live in
-[`lib/research.ts`](./lib/research.ts) and are labeled illustrative until
-`RESEARCH_VERIFIED` is set to true.
+[`DESIGN.md`](./DESIGN.md). Cited market data lives in
+[`lib/market-data.ts`](./lib/market-data.ts). Momentum's own research claims
+(company map, example profiles) live in [`lib/research.ts`](./lib/research.ts).
 
 ## Develop
 

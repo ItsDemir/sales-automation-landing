@@ -1,41 +1,22 @@
 /* ------------------------------------------------------------------ *
- * Research data shown on the site: company profiles and the hiring
- * gap chart.
+ * Momentum's own research claims: the company map and the redacted
+ * profiles. (Published, cited market data lives in market-data.ts.)
  *
- * ⚠️  The profiles and the by-function breakdown below are SAMPLE
- *     values written to match your stated totals (50 companies, 200+
- *     open roles). While RESEARCH_VERIFIED is false, the page labels
- *     them as illustrative. To publish your real research:
- *       1. Replace COMPANY_PROFILES and ROLES_BY_FUNCTION with counts
- *          from your company map.
- *       2. Set RESEARCH_AS_OF to the date of that export.
- *       3. Set RESEARCH_VERIFIED = true. The captions switch to a
- *          source line automatically.
+ * ⚠️  COMPANY_PROFILES below are SAMPLE values. While RESEARCH_VERIFIED
+ *     is false, the page labels them as example profiles. To publish
+ *     real profiles from your company map:
+ *       1. Replace COMPANY_PROFILES with entries from your map.
+ *       2. Set RESEARCH_VERIFIED = true.
+ *     COMPANIES_MAPPED and OPEN_ROLES_LABEL are your own claims about
+ *     your map. Keep the export that backs them.
  * ------------------------------------------------------------------ */
 export const RESEARCH_VERIFIED = false;
-export const RESEARCH_AS_OF = "October 2026";
-
 export const COMPANIES_MAPPED = 50;
 export const OPEN_ROLES_LABEL = "200+";
-export const ROLES_PER_COMPANY_LABEL = "4";
-
-export const RESEARCH_SOURCE = RESEARCH_VERIFIED
-  ? `Source: Momentum research across ${COMPANIES_MAPPED} Series B-D AI diagnostics companies, ${RESEARCH_AS_OF}.`
-  : "Illustrative figures.";
 
 export const PROFILES_CAPTION = RESEARCH_VERIFIED
   ? `From our map of ${COMPANIES_MAPPED} Series B-D AI diagnostics companies. Company names withheld.`
   : "Example profiles for illustration. Company names withheld.";
-
-/* ── Open roles by function, summed across mapped companies ──────── */
-export const ROLES_BY_FUNCTION = [
-  { label: "ML and AI engineering", value: 61 },
-  { label: "Backend and platform", value: 47 },
-  { label: "Data engineering", value: 34 },
-  { label: "Product management", value: 26 },
-  { label: "Security and compliance", value: 19 },
-  { label: "Frontend and clinical apps", value: 17 },
-];
 
 /* ── Redacted company profiles ───────────────────────────────────── */
 export type OrgNode = { role: string; count?: number; children?: OrgNode[] };

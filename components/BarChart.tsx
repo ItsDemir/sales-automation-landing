@@ -37,12 +37,14 @@ export default function BarChart({
   unit = "",
   ticks = 4,
   showShare = false,
+  shareLabel = "of the total",
 }: {
   data: Bar[];
   title: string;
   unit?: string;
   ticks?: number;
   showShare?: boolean;
+  shareLabel?: string;
 }) {
   const [active, setActive] = useState<number | null>(null);
   const [table, setTable] = useState(false);
@@ -99,13 +101,15 @@ export default function BarChart({
                       {fmt(d.value)}
                     </span>
 
-                    {showShare && active === i && (
+                    {active === i && (
                       <span
                         role="tooltip"
-                        className="pointer-events-none absolute -top-9 left-0 z-10 rounded-md bg-ink px-2.5 py-1.5 text-xs text-white shadow-card"
+                        className="pointer-events-none absolute -top-9 left-0 z-10 whitespace-nowrap rounded-md bg-ink px-2.5 py-1.5 text-xs text-white shadow-card"
                       >
-                        <strong className="font-semibold">{Math.round((d.value / total) * 100)}%</strong>{" "}
-                        <span className="text-white/75">of all open roles</span>
+                        <strong className="font-semibold">
+                          {showShare ? `${Math.round((d.value / total) * 100)}%` : fmt(d.value)}
+                        </strong>{" "}
+                        <span className="text-white/75">{showShare ? shareLabel : d.label}</span>
                       </span>
                     )}
                   </motion.div>
