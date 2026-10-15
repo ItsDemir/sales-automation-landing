@@ -1,18 +1,11 @@
-import type { Metadata } from "next";
-import { Inter, Space_Grotesk } from "next/font/google";
+import type { Metadata, Viewport } from "next";
+import { Inter } from "next/font/google";
 import "./globals.css";
 
 const sans = Inter({
   subsets: ["latin"],
   variable: "--font-sans",
   display: "swap",
-});
-
-const display = Space_Grotesk({
-  subsets: ["latin"],
-  variable: "--font-display",
-  display: "swap",
-  weight: ["400", "500", "600", "700"],
 });
 
 export const metadata: Metadata = {
@@ -28,13 +21,17 @@ export const metadata: Metadata = {
   },
 };
 
+export const viewport: Viewport = {
+  themeColor: "#0F766E",
+};
+
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${sans.variable} ${display.variable}`}>
+    <html lang="en" className={sans.variable}>
       <body className="font-sans antialiased">{children}</body>
     </html>
   );

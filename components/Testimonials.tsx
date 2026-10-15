@@ -1,6 +1,7 @@
 "use client";
 
-import { Reveal, RevealGroup, motion } from "./motion";
+import { RevealGroup, motion } from "./motion";
+import { Section, SectionHeading } from "./ui";
 
 /* ------------------------------------------------------------------ *
  * TESTIMONIALS
@@ -47,41 +48,31 @@ export default function Testimonials() {
   if (visible.length === 0) return null;
 
   return (
-    <section
-      id="testimonials"
-      className="mx-auto max-w-wide px-6 py-28 lg:px-10 lg:py-36"
-    >
-      <Reveal className="max-w-2xl">
-        <p className="text-sm uppercase tracking-widest text-accent">
-          From hiring teams
-        </p>
-        <h2 className="mt-4 font-display text-[clamp(2.25rem,5vw,4rem)] font-semibold leading-[1.02] tracking-tightest text-balance text-chalk">
-          Faster hires. Better candidates.
-        </h2>
-      </Reveal>
+    <Section id="testimonials">
+      <SectionHeading eyebrow="From hiring teams" title="Faster hires. Better candidates." />
 
-      <RevealGroup className="mt-16 grid gap-6 lg:grid-cols-2">
+      <RevealGroup className="mt-14 grid gap-5 lg:grid-cols-2">
         {visible.map((t) => (
           <motion.figure
             key={t.title + t.company}
             variants={fadeItem}
-            className="flex flex-col rounded-2xl border border-white/10 bg-ink-900 p-8 lg:p-10"
+            className="flex flex-col rounded-xl border border-line bg-surface p-7 lg:p-9"
           >
             {!t.approved && (
-              <span className="mb-6 self-start rounded-full border border-red-400/50 px-3 py-1 text-xs uppercase tracking-widest text-red-300">
+              <span className="mb-6 self-start rounded-md border border-red-200 bg-red-50 px-2.5 py-1 text-xs font-semibold uppercase tracking-[0.08em] text-red-700">
                 Draft, not shown in production
               </span>
             )}
-            <blockquote className="font-display text-[clamp(1.25rem,2.2vw,1.625rem)] font-medium leading-snug tracking-tight text-chalk">
+            <blockquote className="text-xl font-medium leading-relaxed text-ink">
               &ldquo;{t.quote}&rdquo;
             </blockquote>
-            <figcaption className="mt-8 border-t border-white/10 pt-6 text-sm">
-              <span className="text-chalk">{t.title}</span>
-              <span className="text-chalk-muted">, {t.company}</span>
+            <figcaption className="mt-8 border-t border-line pt-5 text-sm">
+              <span className="font-semibold text-ink">{t.title}</span>
+              <span className="text-ink-subtle">, {t.company}</span>
             </figcaption>
           </motion.figure>
         ))}
       </RevealGroup>
-    </section>
+    </Section>
   );
 }

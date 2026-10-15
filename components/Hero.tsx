@@ -1,39 +1,40 @@
 "use client";
 
 import { motion } from "framer-motion";
-import DemoPanel from "./DemoPanel";
+import HeroNetwork from "./HeroNetwork";
+import { Button } from "./ui";
 import { LEAD_MAGNET_URL, LEAD_MAGNET_EXTERNAL } from "@/lib/site";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
 const item = {
-  hidden: { opacity: 0, y: 24 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.9, ease: EASE } },
+  hidden: { opacity: 0, y: 20 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.8, ease: EASE } },
 };
 
+/* Hero sits on teal 700, not 600: white body text needs 4.5:1. */
 export default function Hero() {
   return (
-    <section id="top" className="relative overflow-hidden bg-grid">
-      {/* top glow-free vignette: flat radial mask via layered borders */}
-      <div className="mx-auto max-w-wide px-6 pb-24 pt-36 lg:px-10 lg:pb-32 lg:pt-44">
-        <div className="grid items-center gap-16 lg:grid-cols-[1.05fr_0.95fr] lg:gap-12">
-          {/* copy */}
+    <section id="top" className="relative overflow-hidden bg-primary-700">
+      <div className="mx-auto max-w-wide px-5 pb-20 pt-32 sm:px-6 lg:px-10 lg:pb-28 lg:pt-40">
+        <div className="grid items-center gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16">
           <motion.div
             className="min-w-0"
             initial="hidden"
             animate="show"
-            variants={{ show: { transition: { staggerChildren: 0.12 } } }}
+            variants={{ show: { transition: { staggerChildren: 0.1 } } }}
           >
-            <motion.div variants={item}>
-              <span className="inline-flex items-center gap-2 rounded-full border border-white/10 px-3 py-1 text-xs text-chalk-muted">
-                <span className="h-1.5 w-1.5 rounded-full bg-accent" />
-                Engineering recruiting for healthcare AI
-              </span>
-            </motion.div>
+            <motion.p
+              variants={item}
+              className="inline-flex items-center gap-2 rounded-md bg-white/10 px-3 py-1.5 text-sm font-medium text-primary-50"
+            >
+              <span className="h-1.5 w-1.5 rounded-full bg-secondary" />
+              Engineering recruiting for AI diagnostics
+            </motion.p>
 
             <motion.h1
               variants={item}
-              className="mt-7 font-display text-[clamp(2.75rem,6vw,5.25rem)] font-semibold leading-[0.98] tracking-tightest text-balance text-chalk"
+              className="mt-6 text-display-xl text-balance text-white"
             >
               Fill your AI diagnostics team 3x faster than traditional
               recruiting.
@@ -41,55 +42,50 @@ export default function Hero() {
 
             <motion.p
               variants={item}
-              className="mt-8 max-w-xl text-lg leading-relaxed text-chalk-muted sm:text-xl"
+              className="mt-6 max-w-xl text-lead text-primary-50"
             >
               We build your engineering and product hiring pipeline from
-              Series B-D AI diagnostics companies. You get candidates who
-              already ship clinical AI under HIPAA and FDA rules, not
-              generalists you have to train.
+              Series B-D AI diagnostics companies. Candidates who already ship
+              clinical AI, not generalists you have to train.
             </motion.p>
 
             <motion.div
               variants={item}
-              className="mt-10 flex flex-col gap-3 sm:flex-row sm:items-center"
+              className="mt-9 flex flex-col gap-3 sm:flex-row"
             >
-              <a
-                href="#contact"
-                className="group inline-flex items-center justify-center gap-2 rounded-full bg-chalk px-6 py-3.5 text-sm font-medium text-ink-900 transition-colors hover:bg-accent"
-              >
+              <Button href="#contact" variant="coral" size="lg">
                 Book a demo
-                <span className="transition-transform duration-300 group-hover:translate-x-0.5">
+                <span aria-hidden className="transition-transform group-hover:translate-x-0.5">
                   →
                 </span>
-              </a>
-              <a
+              </Button>
+              <Button
                 href={LEAD_MAGNET_URL}
+                variant="outline-light"
+                size="lg"
                 {...(LEAD_MAGNET_EXTERNAL && {
                   target: "_blank",
                   rel: "noopener noreferrer",
                 })}
-                className="group inline-flex items-center justify-center gap-2 rounded-full border border-accent/50 px-6 py-3.5 text-sm font-medium text-accent transition-colors hover:bg-accent hover:text-ink-900"
               >
                 Get the free companies list
-                <span className="transition-transform duration-300 group-hover:translate-y-0.5">
-                  ↓
-                </span>
-              </a>
+              </Button>
             </motion.div>
 
-            <motion.p
-              variants={item}
-              className="mt-8 text-sm text-chalk-faint"
-            >
+            <motion.p variants={item} className="mt-6 text-sm text-primary-100">
               Plans from $299/mo. Each qualified candidate costs $15. No
-              placement fees, no cut of first-year salary.
+              placement fees.
             </motion.p>
           </motion.div>
 
-          {/* demo */}
-          <div className="relative min-w-0">
-            <DemoPanel />
-          </div>
+          <motion.div
+            className="mx-auto w-full min-w-0 max-w-[480px]"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1.2, delay: 0.3 }}
+          >
+            <HeroNetwork />
+          </motion.div>
         </div>
       </div>
     </section>

@@ -4,11 +4,12 @@ import { useEffect, useState } from "react";
 
 const LINKS = [
   { href: "#why-healthcare", label: "Why healthcare" },
+  { href: "#mapping", label: "Company map" },
   { href: "#how", label: "How it works" },
-  { href: "#features", label: "Why Momentum" },
   { href: "#pricing", label: "Pricing" },
 ];
 
+/* White on the teal hero, then a light bar once the page scrolls. */
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
 
@@ -23,24 +24,30 @@ export default function Navbar() {
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-colors duration-300 ${
         scrolled
-          ? "border-b border-white/10 bg-ink-900/80 backdrop-blur-xl"
+          ? "border-b border-line bg-surface/95 backdrop-blur"
           : "border-b border-transparent bg-transparent"
       }`}
     >
-      <nav className="mx-auto flex h-16 max-w-wide items-center justify-between px-6 lg:px-10">
+      <nav className="mx-auto flex h-16 max-w-wide items-center justify-between px-5 sm:px-6 lg:px-10">
         <a
           href="#top"
-          className="font-display text-lg font-semibold tracking-tightest text-chalk"
+          className={`text-lg font-bold tracking-tight ${
+            scrolled ? "text-ink" : "text-white"
+          }`}
         >
-          Momentum<span className="text-accent">.</span>
+          Momentum<span className="text-secondary">.</span>
         </a>
 
-        <div className="hidden items-center gap-9 md:flex">
+        <div className="hidden items-center gap-8 md:flex">
           {LINKS.map((l) => (
             <a
               key={l.href}
               href={l.href}
-              className="text-sm text-chalk-muted transition-colors hover:text-chalk"
+              className={`text-sm font-medium transition-colors ${
+                scrolled
+                  ? "text-ink-muted hover:text-primary-700"
+                  : "text-primary-50 hover:text-white"
+              }`}
             >
               {l.label}
             </a>
@@ -49,12 +56,13 @@ export default function Navbar() {
 
         <a
           href="#contact"
-          className="group inline-flex items-center gap-2 rounded-full border border-white/20 px-4 py-2 text-sm text-chalk transition-colors hover:border-accent hover:text-accent"
+          className={`inline-flex items-center rounded-lg px-4 py-2 text-sm font-semibold transition-colors ${
+            scrolled
+              ? "bg-primary-700 text-white hover:bg-primary-800"
+              : "border border-white/50 text-white hover:bg-white hover:text-primary-800"
+          }`}
         >
           Book a demo
-          <span className="transition-transform duration-300 group-hover:translate-x-0.5">
-            →
-          </span>
         </a>
       </nav>
     </header>

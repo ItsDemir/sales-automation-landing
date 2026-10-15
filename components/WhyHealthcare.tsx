@@ -1,82 +1,84 @@
 "use client";
 
 import { Reveal, RevealGroup, motion } from "./motion";
-import { Chart, Shield, Target } from "./icons";
+import { Section, SectionHeading } from "./ui";
+import { TrendUp, Shield, Target } from "./icons";
+import { COMPANIES_MAPPED, OPEN_ROLES_LABEL } from "@/lib/research";
+
+const STATS = [
+  {
+    value: String(COMPANIES_MAPPED),
+    label: "AI diagnostics companies mapped",
+    note: "Series B-D, with org charts and open roles for each.",
+  },
+  {
+    value: OPEN_ROLES_LABEL,
+    label: "open engineering and product roles",
+    note: `Tracked across those ${COMPANIES_MAPPED} companies.`,
+  },
+  {
+    value: "5-10x",
+    label: "faster hiring than they can recruit",
+    note: "Series B-D healthcare tech teams are adding headcount faster than recruiting can fill it.",
+  },
+];
 
 const REASONS = [
   {
-    Icon: Chart,
-    stat: "5-10x",
-    title:
-      "Series B-D healthcare tech companies are hiring 5-10x faster than they can recruit.",
-    body: "A new round comes with a headcount plan the recruiting team can't keep up with. Roles sit open, roadmaps slip, and the board asks why.",
+    Icon: TrendUp,
+    title: "Hiring outpaces recruiting.",
+    body: "A new round comes with a headcount plan. Recruiting capacity doesn't grow at the same pace, so roles sit open.",
   },
   {
     Icon: Shield,
-    stat: "HIPAA + AI",
-    title:
-      "They need engineers and product leaders who understand healthcare compliance and AI.",
-    body: "HIPAA, FDA SaMD pathways, clinical validation, and production ML in one person. Few candidates have all of it, and the ones who do already have jobs.",
+    title: "The bar is specific.",
+    body: "They need engineers and product leaders who understand healthcare compliance and AI. HIPAA, FDA SaMD pathways, and production ML in one person.",
   },
   {
     Icon: Target,
-    stat: "We do.",
-    title: "Traditional recruiting doesn't reach these specialists. We do.",
-    body: "These people don't apply to job posts or answer generic InMails. They reply to a pitch that shows you understand the systems they build.",
+    title: "Traditional recruiting doesn't reach them. We do.",
+    body: "These specialists don't answer job posts or generic InMails. They reply to a pitch that shows you understand their work.",
   },
 ];
 
 const fadeItem = {
-  hidden: { opacity: 0, y: 28 },
-  show: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] as const },
-  },
+  hidden: { opacity: 0, y: 20 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] as const } },
 };
 
 export default function WhyHealthcare() {
   return (
-    <section
-      id="why-healthcare"
-      className="mx-auto max-w-wide px-6 py-28 lg:px-10 lg:py-36"
-    >
-      <Reveal className="max-w-2xl">
-        <p className="text-sm uppercase tracking-widest text-accent">
-          Why healthcare tech companies
-        </p>
-        <h2 className="mt-4 font-display text-[clamp(2.25rem,5vw,4rem)] font-semibold leading-[1.02] tracking-tightest text-balance text-chalk">
-          We picked one vertical and mapped all of it.
-        </h2>
-        <p className="mt-5 text-lg leading-relaxed text-chalk-muted">
-          Generalist recruiters spread across every industry. We only work
-          healthcare tech, and we start with AI diagnostics, where the hiring
-          gap is widest.
-        </p>
-      </Reveal>
+    <Section id="why-healthcare">
+      <SectionHeading eyebrow="Why healthcare tech" title="We picked one vertical and mapped all of it.">
+        Series B-D healthcare tech companies are hiring faster than they can
+        recruit. We focus on AI diagnostics, where the gap is widest.
+      </SectionHeading>
 
-      <RevealGroup className="mt-16 grid gap-px overflow-hidden rounded-2xl border border-white/10 bg-white/10 lg:grid-cols-3">
-        {REASONS.map(({ Icon, stat, title, body }) => (
+      <RevealGroup className="mt-14 grid gap-5 md:grid-cols-3">
+        {STATS.map((s) => (
           <motion.div
-            key={stat}
+            key={s.label}
             variants={fadeItem}
-            className="group flex flex-col bg-ink-900 p-8 transition-colors hover:bg-ink-800 lg:p-10"
+            className="rounded-xl border border-primary/40 bg-surface p-7"
           >
-            <div className="flex items-center justify-between">
-              <Icon className="h-7 w-7 text-chalk transition-colors group-hover:text-accent" />
-              <span className="font-display text-3xl font-semibold tracking-tightest text-accent">
-                {stat}
-              </span>
-            </div>
-            <h3 className="mt-8 font-display text-xl font-medium leading-snug text-chalk">
-              {title}
-            </h3>
-            <p className="mt-3 text-[15px] leading-relaxed text-chalk-muted">
-              {body}
+            <p className="text-5xl font-bold tracking-tight text-secondary-600 lg:text-6xl">
+              {s.value}
             </p>
+            <p className="mt-3 text-base font-semibold text-ink">{s.label}</p>
+            <p className="mt-2 text-sm leading-relaxed text-ink-subtle">{s.note}</p>
           </motion.div>
         ))}
       </RevealGroup>
-    </section>
+
+      <Reveal className="mt-16 grid gap-10 md:grid-cols-3">
+        {REASONS.map(({ Icon, title, body }) => (
+          <div key={title}>
+            <Icon className="h-6 w-6 text-primary" />
+            <h3 className="mt-4 text-lg font-semibold text-ink">{title}</h3>
+            <p className="mt-2 leading-relaxed text-ink-muted">{body}</p>
+          </div>
+        ))}
+      </Reveal>
+    </Section>
   );
 }

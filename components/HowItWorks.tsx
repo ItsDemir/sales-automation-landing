@@ -1,76 +1,89 @@
 "use client";
 
-import { Reveal, RevealGroup, motion } from "./motion";
-import { Target, Pen, Send, Handshake } from "./icons";
+import { RevealGroup, motion } from "./motion";
+import { Section, SectionHeading } from "./ui";
+import { MapFold, Pitch, SendTrack, Hire } from "./icons";
 
+/* Teal carries the eye through steps 1-3; green marks the hire. */
 const STEPS = [
   {
     n: "01",
-    Icon: Target,
+    Icon: MapFold,
+    verb: "Map",
     title: "Map all AI diagnostics companies and their engineering org gaps",
-    body: "We map every Series B-D AI diagnostics company: who runs each engineering and product team, which roles sit open, and where teams are stretched thin. You see exactly where the talent is.",
+    body: "We chart each Series B-D company's engineering and product teams, who leads them, and which roles sit open.",
+    tone: "teal",
   },
   {
     n: "02",
-    Icon: Pen,
+    Icon: Pitch,
+    verb: "Pitch",
     title: "Write recruiting pitches that speak to engineers at these companies",
-    body: "Each pitch is written for one engineer. It names their team, their stack, and the problem your role solves, in language that lands with people who build regulated clinical AI.",
+    body: "Each pitch names the engineer's team, stack, and the problem your role solves. Written for people who build regulated clinical AI.",
+    tone: "teal",
   },
   {
     n: "03",
-    Icon: Send,
+    Icon: SendTrack,
+    verb: "Send",
     title: "We send & track",
-    body: "We run the full sequence from authenticated, warmed-up domains and monitor opens, clicks, and replies. Then we hand you the candidates who want to talk.",
+    body: "We run the sequence from authenticated domains and track every reply. Interested candidates go straight to you.",
+    tone: "teal",
   },
   {
     n: "04",
-    Icon: Handshake,
+    Icon: Hire,
+    verb: "Hire",
     title: "You focus on closing engineering hires",
-    body: "Your team spends its time on interviews and offers. Sourcing, outreach, and follow-up are already done.",
+    body: "Your team runs interviews and makes offers. Sourcing and follow-up are already done.",
+    tone: "green",
   },
-];
+] as const;
 
 const fadeItem = {
-  hidden: { opacity: 0, y: 28 },
-  show: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] as const },
-  },
+  hidden: { opacity: 0, y: 20 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] as const } },
 };
 
 export default function HowItWorks() {
   return (
-    <section id="how" className="mx-auto max-w-wide px-6 py-28 lg:px-10 lg:py-36">
-      <Reveal className="max-w-2xl">
-        <p className="text-sm uppercase tracking-widest text-accent">
-          How it works
-        </p>
-        <h2 className="mt-4 font-display text-[clamp(2.25rem,5vw,4rem)] font-semibold leading-[1.02] tracking-tightest text-balance text-chalk">
-          Four steps from org chart to signed offer.
-        </h2>
-      </Reveal>
+    <Section id="how" tone="surface">
+      <SectionHeading eyebrow="How it works" title="Four steps from org chart to signed offer.">
+        Mapping, pitching, and sending are on us. Hiring decisions stay with
+        you.
+      </SectionHeading>
 
-      <RevealGroup className="mt-16 grid gap-px overflow-hidden rounded-2xl border border-white/10 bg-white/10 sm:grid-cols-2">
-        {STEPS.map(({ n, Icon, title, body }) => (
-          <motion.div
-            key={n}
-            variants={fadeItem}
-            className="group flex flex-col bg-ink-900 p-8 transition-colors hover:bg-ink-800 lg:p-10"
-          >
-            <div className="flex items-center justify-between">
-              <Icon className="h-7 w-7 text-chalk transition-colors group-hover:text-accent" />
-              <span className="font-display text-sm text-chalk-faint">{n}</span>
-            </div>
-            <h3 className="mt-8 font-display text-2xl font-medium leading-snug text-chalk">
-              {title}
-            </h3>
-            <p className="mt-3 text-[15px] leading-relaxed text-chalk-muted">
-              {body}
-            </p>
-          </motion.div>
-        ))}
+      <RevealGroup className="relative mt-16 grid gap-10 md:grid-cols-2 lg:grid-cols-4 lg:gap-8">
+        {/* connector: teal through step 3, green into the hire */}
+        <div aria-hidden className="absolute left-7 top-[27px] hidden h-0.5 w-[calc(52%-1.75rem)] bg-primary/40 lg:block" />
+        <div aria-hidden className="absolute left-[52%] top-[27px] hidden h-0.5 w-[26%] bg-secondary lg:block" />
+
+        {STEPS.map(({ n, Icon, verb, title, body, tone }) => {
+          const green = tone === "green";
+          return (
+            <motion.div key={n} variants={fadeItem} className="relative">
+              <div
+                className={`relative flex h-14 w-14 items-center justify-center rounded-xl border ${
+                  green
+                    ? "border-secondary/40 bg-secondary-50 text-secondary-700"
+                    : "border-primary/30 bg-primary-50 text-primary-700"
+                }`}
+              >
+                <Icon className="h-7 w-7" />
+              </div>
+              <p
+                className={`mt-6 text-xs font-semibold uppercase tracking-[0.12em] ${
+                  green ? "text-secondary-700" : "text-primary-700"
+                }`}
+              >
+                {n} {verb}
+              </p>
+              <h3 className="mt-2 text-lg font-semibold leading-snug text-ink">{title}</h3>
+              <p className="mt-3 leading-relaxed text-ink-muted">{body}</p>
+            </motion.div>
+          );
+        })}
       </RevealGroup>
-    </section>
+    </Section>
   );
 }

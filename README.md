@@ -1,31 +1,37 @@
 # Momentum — Landing Site
 
-A modern, futuristic marketing site for **Momentum**, an engineering and product
-hiring pipeline service for healthcare tech, focused on Series B-D AI
-diagnostics companies. Migrated from a vanilla HTML/CSS page to a Next.js app with a
-dark, editorial, motion-driven design inspired by Midjourney, Runway, and Cosmos.
+Marketing site for **Momentum**, an engineering and product hiring pipeline
+service for healthcare tech, focused on Series B-D AI diagnostics companies.
+Light, data-first design in teal, green, and coral.
 
 ## Stack
 
 - **Next.js 14** (App Router) + **React 18** + **TypeScript**
-- **Tailwind CSS** for styling (flat, dark-first design system)
+- **Tailwind CSS** for styling (tokens in `tailwind.config.ts`)
 - **Framer Motion** for scroll + hover animations
-- **next/font** — Space Grotesk (display) + Inter (body)
+- **next/font**: Inter
 
 Fully static (`○ (Static)` prerender), ~134 kB first-load JS.
 
 ## Sections
 
-- **Hero**: headline + live "hiring pipeline" demo panel with animated counters
-- **Marquee**: capability ticker
-- **Why healthcare tech**: why we focus on this vertical
-- **How it works**: four steps with outline icons
-- **Why Momentum**: healthcare hiring stats, 200 vs 20 outreach chart, comparison table
+- **Hero**: teal, with an animated DNA helix that unfolds into an org chart
+- **Why healthcare tech**: green stat cards (50 companies, 200+ open roles)
+- **Company mapping**: redacted company profiles with org trees and hiring gaps
+- **Hiring gap**: open roles by function bar chart
+- **How it works**: map, pitch, send, hire
+- **Pipeline**: example hiring dashboard with filters and reply status
+- **Compliance**: HIPAA-aware research callout
+- **Why Momentum**: recruiting cost stats, 200 vs 20 outreach chart, comparison table
 - **Testimonials**: drafts only; hidden in production until `approved: true`
-  (see `components/Testimonials.tsx`)
 - **Pricing**: Data Feed Only / Professional
-- **CTA**: demo booking + free AI Diagnostics Companies List lead magnet
+- **CTA**: demo booking + free AI Diagnostics Companies List
 - **Footer**
+
+Design tokens, contrast rules, components, and voice are documented in
+[`DESIGN.md`](./DESIGN.md). Research figures shown on the page live in
+[`lib/research.ts`](./lib/research.ts) and are labeled illustrative until
+`RESEARCH_VERIFIED` is set to true.
 
 ## Develop
 

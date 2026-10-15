@@ -1,12 +1,12 @@
 "use client";
 
 import { Reveal, RevealGroup, motion } from "./motion";
-
-const EASE = [0.16, 1, 0.3, 1] as const;
+import { Section, SectionHeading } from "./ui";
+import BarChart from "./BarChart";
 
 /* ------------------------------------------------------------------ *
- * HEADLINE STATS: the cost of hiring healthcare tech engineers today
- * and what Momentum's AI diagnostics focus changes.
+ * WHY MOMENTUM: the cost of hiring healthcare tech engineers today and
+ * what an AI diagnostics focus changes.
  * ------------------------------------------------------------------ */
 const STATS = [
   {
@@ -19,147 +19,60 @@ const STATS = [
     stat: "50",
     caption:
       "Our AI diagnostics focus gives you access to 50 pre-mapped companies with identified talent gaps.",
-    note: "Org charts, open roles, and engineering leaders already researched before your first call with us.",
+    note: "Org charts, open roles, and engineering leaders researched before your first call with us.",
   },
 ];
 
-/* Outreach needed to land one qualified hire. Bar widths scale to 200. */
+/* Emphasis pattern: Momentum in coral, the baseline in slate. */
 const OUTREACH = [
-  {
-    label: "Traditional recruiting",
-    count: 200,
-    detail: "cold outreaches",
-    highlight: false,
-  },
-  {
-    label: "Momentum",
-    count: 20,
-    detail: "personalized outreaches to verified engineering leaders",
-    highlight: true,
-  },
+  { label: "Traditional recruiting", value: 200, muted: true },
+  { label: "Momentum", value: 20 },
 ];
-const OUTREACH_MAX = 200;
 
-/* ------------------------------------------------------------------ *
- * COMPARISON TABLE: traditional recruiting vs Momentum.
- * ------------------------------------------------------------------ */
 const COMPARISON = [
-  [
-    "What you pay",
-    "20-25% of first-year salary, per hire",
-    "$1,500/mo + $15 per qualified candidate",
-  ],
+  ["What you pay", "20-25% of first-year salary, per hire", "$1,500/mo + $15 per qualified candidate"],
   ["Outreach for 1 qualified hire", "~200 cold messages", "~20 personalized pitches"],
   ["Who you reach", "Active job seekers", "Verified engineering leaders at your target companies"],
   ["Candidate source", "Job boards and inbound", "50 mapped AI diagnostics companies"],
-  [
-    "Domain fit",
-    "Screened after the fact",
-    "Healthcare compliance + AI experience, targeted up front",
-  ],
+  ["Domain fit", "Screened after the fact", "Healthcare compliance + AI experience, targeted up front"],
   ["The pitch", "A copied job description", "Written for each engineer's team and stack"],
 ];
 
 const fadeItem = {
   hidden: { opacity: 0, y: 20 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.7, ease: EASE } },
+  show: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] as const } },
 };
 
 export default function Features() {
   return (
-    <section
-      id="features"
-      className="mx-auto max-w-wide px-6 py-28 lg:px-10 lg:py-36"
-    >
-      {/* ── Heading ─────────────────────────────────────────────── */}
-      <Reveal className="max-w-2xl">
-        <p className="text-sm uppercase tracking-widest text-accent">
-          Why Momentum
-        </p>
-        <h2 className="mt-4 font-display text-[clamp(2.25rem,5vw,4rem)] font-semibold leading-[1.02] tracking-tightest text-balance text-chalk">
-          The math on healthcare tech hiring.
-        </h2>
-        <p className="mt-5 text-lg leading-relaxed text-chalk-muted">
-          Agencies take a cut of salary. Job posts pull in generalists.
-          Momentum puts engineers who already know healthcare compliance and
-          AI into your pipeline, and you pay $15 for each qualified one.
-        </p>
-      </Reveal>
+    <Section id="features" tone="surface">
+      <SectionHeading eyebrow="Why Momentum" title="The math on healthcare tech hiring.">
+        Agencies take a cut of salary. Job posts pull in generalists. With
+        Momentum, each qualified candidate costs $15.
+      </SectionHeading>
 
-      {/* ── Headline stats ──────────────────────────────────────── */}
-      <RevealGroup className="mt-14 grid gap-px overflow-hidden rounded-2xl border border-white/10 bg-white/10 sm:grid-cols-2">
+      <RevealGroup className="mt-14 grid gap-5 md:grid-cols-2">
         {STATS.map((s) => (
           <motion.div
             key={s.stat}
             variants={fadeItem}
-            className="flex flex-col bg-ink-900 p-7 lg:p-10"
+            className="rounded-xl border border-line bg-canvas p-7 lg:p-8"
           >
-            <p className="font-display text-[clamp(2.5rem,5vw,3.75rem)] font-semibold leading-none tracking-tightest text-accent">
-              {s.stat}
-            </p>
-            <p className="mt-5 text-lg leading-relaxed text-chalk">
-              {s.caption}
-            </p>
-            <p className="mt-4 text-sm leading-relaxed text-chalk-faint">
-              {s.note}
-            </p>
+            <p className="text-5xl font-bold tracking-tight text-ink lg:text-6xl">{s.stat}</p>
+            <p className="mt-5 text-lg leading-relaxed text-ink">{s.caption}</p>
+            <p className="mt-3 text-sm leading-relaxed text-ink-subtle">{s.note}</p>
           </motion.div>
         ))}
       </RevealGroup>
 
-      {/* ── Outreach comparison: 200 vs 20 ──────────────────────── */}
-      <Reveal className="mt-6">
-        <div className="rounded-2xl border border-white/10 bg-ink-800 p-7 lg:p-10">
-          <p className="text-xs uppercase tracking-widest text-chalk-muted">
-            Outreach to land 1 qualified hire
-          </p>
-          <div className="mt-8 space-y-7">
-            {OUTREACH.map((o) => (
-              <div key={o.label}>
-                <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
-                  <p
-                    className={`font-display text-lg font-medium ${
-                      o.highlight ? "text-accent" : "text-chalk"
-                    }`}
-                  >
-                    {o.label}
-                  </p>
-                  <p className="text-sm text-chalk-muted">
-                    <span
-                      className={`font-display text-2xl font-semibold tabular-nums ${
-                        o.highlight ? "text-accent" : "text-chalk"
-                      }`}
-                    >
-                      {o.count}
-                    </span>{" "}
-                    {o.detail}
-                  </p>
-                </div>
-                {/* Observe the full-width track: a zero-width bar near the
-                    left edge never intersects the inset viewport on phones. */}
-                <motion.div
-                  initial="hidden"
-                  whileInView="show"
-                  viewport={{ once: true, margin: "-80px" }}
-                  className="mt-3 h-3 overflow-hidden rounded-full bg-white/5"
-                >
-                  <motion.div
-                    variants={{
-                      hidden: { width: 0 },
-                      show: {
-                        width: `${(o.count / OUTREACH_MAX) * 100}%`,
-                        transition: { duration: 1.2, ease: EASE, delay: 0.15 },
-                      },
-                    }}
-                    className={`h-full rounded-full ${
-                      o.highlight ? "bg-accent" : "bg-chalk-faint"
-                    }`}
-                  />
-                </motion.div>
-              </div>
-            ))}
+      <Reveal className="mt-5">
+        <div className="rounded-xl border border-line bg-canvas p-7 lg:p-8">
+          <h3 className="text-base font-semibold text-ink">Outreach to land 1 qualified hire</h3>
+          <p className="mt-1 text-sm text-ink-subtle">Messages sent per qualified hire</p>
+          <div className="mt-8">
+            <BarChart title="Outreach to land 1 qualified hire" data={OUTREACH} />
           </div>
-          <p className="mt-8 max-w-3xl text-[15px] leading-relaxed text-chalk-muted">
+          <p className="mt-6 max-w-3xl leading-relaxed text-ink-muted">
             Traditional recruiting: 200 cold outreaches to find 1 qualified
             hire. Momentum: 20 personalized outreaches to verified engineering
             leaders at your target companies.
@@ -167,22 +80,19 @@ export default function Features() {
         </div>
       </Reveal>
 
-      {/* ── Traditional recruiting vs Momentum ──────────────────── */}
-      <Reveal className="mt-20">
-        <h3 className="font-display text-2xl font-medium tracking-tightest text-chalk">
-          Traditional recruiting vs. Momentum
-        </h3>
+      <Reveal className="mt-16">
+        <h3 className="text-display-md text-ink">Traditional recruiting vs. Momentum</h3>
         <div className="mt-6 overflow-x-auto">
           <table className="w-full min-w-[640px] border-separate border-spacing-0 text-left text-sm">
             <thead>
-              <tr className="text-xs uppercase tracking-widest text-chalk-muted">
-                <th className="border-b border-white/10 py-4 pr-4 font-normal">
-                  &nbsp;
+              <tr className="text-xs uppercase tracking-[0.08em]">
+                <th className="border-b border-line py-3 pr-4 font-semibold text-ink-subtle">
+                  <span className="sr-only">Dimension</span>
                 </th>
-                <th className="border-b border-white/10 py-4 pr-4 font-normal">
+                <th className="border-b border-line py-3 pr-4 font-semibold text-ink-subtle">
                   Traditional recruiting
                 </th>
-                <th className="border-b border-accent/30 py-4 pr-4 font-normal text-accent">
+                <th className="border-b-2 border-primary py-3 pr-4 font-semibold text-primary-700">
                   With Momentum
                 </th>
               </tr>
@@ -190,21 +100,15 @@ export default function Features() {
             <tbody>
               {COMPARISON.map(([row, traditional, momentum]) => (
                 <tr key={row}>
-                  <td className="border-b border-white/5 py-4 pr-4 text-chalk">
-                    {row}
-                  </td>
-                  <td className="border-b border-white/5 py-4 pr-4 text-chalk-muted">
-                    {traditional}
-                  </td>
-                  <td className="border-b border-white/5 py-4 pr-4 text-chalk">
-                    {momentum}
-                  </td>
+                  <td className="border-b border-line py-4 pr-4 font-medium text-ink">{row}</td>
+                  <td className="border-b border-line py-4 pr-4 text-ink-subtle">{traditional}</td>
+                  <td className="border-b border-line py-4 pr-4 text-ink">{momentum}</td>
                 </tr>
               ))}
             </tbody>
           </table>
         </div>
       </Reveal>
-    </section>
+    </Section>
   );
 }
